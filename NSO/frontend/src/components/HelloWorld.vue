@@ -1,90 +1,109 @@
 <template>
-  <v-container class="fill-height" max-width="900">
-    <div>
-      <v-img
-        class="mb-4"
-        height="150"
-        src="@/assets/logo.png"
-      />
+    <v-data-table :headers="headers"
+                  :items="movies"
+                  item-value="title"
+                  hide-default-footer
+                  show-expand>
+        <template v-slot:item.data-table-expand="{ internalItem, isExpanded, toggleExpand }">
+            <v-btn :append-icon="isExpanded(internalItem) ? 'mdi-chevron-up' : 'mdi-chevron-down'"
+                   :text="isExpanded(internalItem) ? 'Collapse' : 'More info'"
+                   class="text-none"
+                   color="medium-emphasis"
+                   size="small"
+                   variant="text"
+                   width="105"
+                   border
+                   slim
+                   @click="toggleExpand(internalItem)"></v-btn>
+        </template>
 
-      <div class="mb-8 text-center">
-        <div class="text-body-2 font-weight-light mb-n1">Welcome to</div>
-        <h1 class="text-h2 font-weight-bold">Vuetify</h1>
-      </div>
+        <template v-slot:expanded-row="{ columns, item }">
+            <tr>
+                <td :colspan="columns.length" class="py-2">
+                    <v-sheet rounded="lg" border>
+                        <v-table density="compact">
+                            <tbody class="bg-surface-light">
+                                <tr>
+                                    <th>Rating</th>
+                                    <th>Synopsis</th>
+                                    <th>Cast</th>
+                                </tr>
+                            </tbody>
 
-      <v-row>
-        <v-col cols="12">
-          <v-card
-            class="py-4"
-            color="surface-variant"
-            image="https://cdn.vuetifyjs.com/docs/images/one/create/feature.png"
-            prepend-icon="mdi-rocket-launch-outline"
-            rounded="lg"
-            variant="tonal"
-          >
-            <template #image>
-              <v-img position="top right" />
-            </template>
-
-            <template #title>
-              <h2 class="text-h5 font-weight-bold">
-                Get started
-              </h2>
-            </template>
-
-            <template #subtitle>
-              <div class="text-subtitle-1">
-                Change this page by updating <v-kbd>{{ `<HelloWorld />` }}</v-kbd> in <v-kbd>components/HelloWorld.vue</v-kbd>.
-              </div>
-            </template>
-          </v-card>
-        </v-col>
-
-        <v-col v-for="link in links" :key="link.href" cols="6">
-          <v-card
-            append-icon="mdi-open-in-new"
-            class="py-4"
-            color="surface-variant"
-            :href="link.href"
-            :prepend-icon="link.icon"
-            rel="noopener noreferrer"
-            rounded="lg"
-            :subtitle="link.subtitle"
-            target="_blank"
-            :title="link.title"
-            variant="tonal"
-          />
-        </v-col>
-      </v-row>
-    </div>
-  </v-container>
+                            <tbody>
+                                <tr>
+                                    <td class="py-2">
+                                        <v-rating :model-value="item.details.rating"
+                                                  color="orange-darken-2"
+                                                  density="comfortable"
+                                                  size="small"
+                                                  half-increments
+                                                  readonly></v-rating>
+                                    </td>
+                                    <td class="py-2">{{ item.details.synopsis }}</td>
+                                    <td class="py-2">{{ item.details.cast.join(', ') }}</td>
+                                </tr>
+                            </tbody>
+                        </v-table>
+                    </v-sheet>
+                </td>
+            </tr>
+        </template>
+    </v-data-table>
 </template>
 
-<script setup>
-  const links = [
-    {
-      href: 'https://vuetifyjs.com/',
-      icon: 'mdi-text-box-outline',
-      subtitle: 'Learn about all things Vuetify in our documentation.',
-      title: 'Documentation',
-    },
-    {
-      href: 'https://vuetifyjs.com/introduction/why-vuetify/#feature-guides',
-      icon: 'mdi-star-circle-outline',
-      subtitle: 'Explore available framework Features.',
-      title: 'Features',
-    },
-    {
-      href: 'https://vuetifyjs.com/components/all',
-      icon: 'mdi-widgets-outline',
-      subtitle: 'Discover components in the API Explorer.',
-      title: 'Components',
-    },
-    {
-      href: 'https://discord.vuetifyjs.com',
-      icon: 'mdi-account-group-outline',
-      subtitle: 'Connect with Vuetify developers.',
-      title: 'Community',
-    },
-  ]
+<script>
+    export default {
+        data() {
+            return {
+                headers: [
+                    { width: 300, title: 'Название устройства', key: 'title', align: 'start', sortable: true },
+                    { width: 250, title: 'Описание', key: 'director' },
+                    { width: 150, title: 'Порты WAN', key: 'genre' },
+                    { width: 130, title: 'Порты LAN', key: 'year' },
+                    { width: 140, title: 'Свободно', key: 'runtime' },
+                    { width: 1, key: 'data-table-expand' }
+                ],
+
+                movies: [
+                    {
+                        title: "Eltex",
+                        director: 'дата установки 2025',
+                        genre: "1-10",
+                        year: "11-24",
+                        runtime: 12,
+                        details: {
+                            synopsis: 'Two imprisoned men bond over years, finding solace and redemption through acts of decency.',
+                            cast: ['Tim Robbins', 'Morgan Freeman'],
+                            rating: 3.5,
+                        },
+                    },
+                    {
+                        title: 'Eltex',
+                        director: 'дата установки 2025',
+                        genre: "1-10",
+                        year: "11-24",
+                        runtime: 5,
+                        details: {
+                            synopsis: 'Interwoven stories of criminals, violence, and redemption in Los Angeles.',
+                            cast: ['John Travolta', 'Samuel L. Jackson'],
+                            rating: 4.5,
+                        },
+                    },
+                    {
+                        title: 'Eltex',
+                        director: 'дата установки 2025',
+                        genre: "1-10",
+                        year: "11-24",
+                        runtime: 2,
+                        details: {
+                            synopsis: 'When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.',
+                            cast: ['Christian Bale', 'Heath Ledger'],
+                            rating: 4,
+                        },
+                    },
+                ]
+            }
+        }
+    }
 </script>

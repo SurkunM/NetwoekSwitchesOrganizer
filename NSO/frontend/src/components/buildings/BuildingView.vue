@@ -8,7 +8,7 @@
 
                 <v-card>
                     <v-card-title class="text-center">
-                        Выберите этаж
+                        Р’С‹Р±РµСЂРёС‚Рµ СЌС‚Р°Р¶
                     </v-card-title>
                     <v-card-text>
                         <v-row>
@@ -25,7 +25,7 @@
                                        class="floor-btn"
                                        :loading="loadingFloor === floor.number"
                                        @click="navigateToFloor(floor.number)">
-                                    {{ floor.number }} этаж
+                                    {{ floor.number }} СЌС‚Р°Р¶
                                     <v-badge v-if="floor.rooms.length"
                                              :content="floor.rooms.length"
                                              color="info"
@@ -42,7 +42,7 @@
 </template>
 
 <script>
-    import { useBuildingsStore } from '@/stores/buildings'
+    import { useBuildingsStore } from '@/stores/app.js'
 
     export default {
         props: {
@@ -65,13 +65,13 @@
         methods: {
             navigateToFloor(floorNumber) {
                 this.loadingFloor = floorNumber
-                // Можно добавить предзагрузку данных для этажа
+                // РњРѕР¶РЅРѕ РґРѕР±Р°РІРёС‚СЊ РїСЂРµРґР·Р°РіСЂСѓР·РєСѓ РґР°РЅРЅС‹С… РґР»СЏ СЌС‚Р°Р¶Р°
                 setTimeout(() => {
                     this.loadingFloor = null
                 }, 500)
             }
         },
-        // Реагируем на изменение buildingId
+        // Р РµР°РіРёСЂСѓРµРј РЅР° РёР·РјРµРЅРµРЅРёРµ buildingId
         watch: {
             buildingId: {
                 handler(newId) {

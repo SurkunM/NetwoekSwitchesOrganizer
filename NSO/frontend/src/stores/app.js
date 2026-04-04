@@ -3,10 +3,16 @@ import { defineStore } from "pinia"
 export const useBuildingsStore = defineStore("buildings", {
     state: () => ({
         buildings: {
+            "home": {
+                id: "home",
+                title: "home",
+                address: "home",
+                floors: []
+            },
             "communist_140": {
                 id: "communist_140",
-                title: "Коммунистический 140",
-                address: "ул. Коммунистическая, 140",
+                title: "РҐРёСЂСѓСЂРіРёС‡РµСЃРєРёР№ РєРѕСЂРїСѓСЃ",
+                address: "СѓР». РљРѕРјРјСѓРЅРёСЃС‚РёС‡РµСЃРєР°СЏ, 140",
                 floors: [
                     { id: 1, number: 1, rooms: [101, 102, 103, 104] },
                     { id: 2, number: 2, rooms: [201, 202, 203, 204] },
@@ -19,8 +25,8 @@ export const useBuildingsStore = defineStore("buildings", {
             },
             "communist_130_admin": {
                 id: "communist_130_admin",
-                title: "Коммунистический 130 (Администрация)",
-                address: "ул. Коммунистическая, 130/А",
+                title: "РђРґРјРёРЅРёСЃС‚СЂР°С†РёСЏ",
+                address: "СѓР». РљРѕРјРјСѓРЅРёСЃС‚РёС‡РµСЃРєР°СЏ, 130/Рђ",
                 floors: [
                     { id: 1, number: 1, rooms: [101, 102] },
                     { id: 2, number: 2, rooms: [201, 202] }
@@ -28,8 +34,8 @@ export const useBuildingsStore = defineStore("buildings", {
             },
             "communist_130": {
                 id: "communist_130",
-                title: "Коммунистический 130",
-                address: "ул. Коммунистическая, 130",
+                title: "РўРµСЂР°РїРµРІС‚РёС‡РµСЃРєРёР№ РєРѕСЂРїСѓСЃ",
+                address: "СѓР». РљРѕРјРјСѓРЅРёСЃС‚РёС‡РµСЃРєР°СЏ, 130",
                 floors: [
                     { id: 1, number: 1, rooms: [101, 102, 103] },
                     { id: 2, number: 2, rooms: [201, 202, 203] },
@@ -38,16 +44,16 @@ export const useBuildingsStore = defineStore("buildings", {
             },
             "communist_modul": {
                 id: "communist_modul",
-                title: "Приемный покой (модуль)",
-                address: "ул. Коммунистическая (модуль)",
+                title: "РџСЂРёРµРјРЅС‹Р№ РїРѕРєРѕР№ (РјРѕРґСѓР»СЊ)",
+                address: "СѓР». РљРѕРјРјСѓРЅРёСЃС‚РёС‡РµСЃРєР°СЏ (РјРѕРґСѓР»СЊ)",
                 floors: [
                     { id: 1, number: 1, rooms: [1, 2, 3, 4] }
                 ]
             },
             "communist_124_1": {
                 id: "communist_124_1",
-                title: "Коммунистический 124/1",
-                address: "ул. Коммунистическая, 124/1",
+                title: "Р”РµС‚СЃРєР°СЏ СЂР°Р№РѕРЅРЅР°СЏ СЂРµРіРёСЃС‚СЂР°С‚СѓСЂР°",
+                address: "СѓР». РљРѕРјРјСѓРЅРёСЃС‚РёС‡РµСЃРєР°СЏ, 124/1",
                 floors: [
                     { id: 1, number: 1, rooms: [101, 102, 103] },
                     { id: 2, number: 2, rooms: [201, 202, 203] }
@@ -55,8 +61,8 @@ export const useBuildingsStore = defineStore("buildings", {
             },
             "communist_124": {
                 id: "communist_124",
-                title: "Коммунистический 124",
-                address: "ул. Коммунистическая, 124",
+                title: "Р”РµС‚СЃРєР°СЏ РїРѕР»РёРєР»РёРЅРёРєР°",
+                address: "СѓР». РљРѕРјРјСѓРЅРёСЃС‚РёС‡РµСЃРєР°СЏ, 124",
                 floors: [
                     { id: 1, number: 1, rooms: [101, 102] },
                     { id: 2, number: 2, rooms: [201, 202] },
@@ -65,8 +71,8 @@ export const useBuildingsStore = defineStore("buildings", {
             },
             "communist_122": {
                 id: "communist_122",
-                title: "Коммунистический 122",
-                address: "ул. Коммунистическая, 122",
+                title: "Р”РµС‚СЃРєР°СЏ РіРѕСЂРѕРґРєР°СЏ СЂРµРіРёСЃС‚СЂР°С‚СѓСЂР°",
+                address: "СѓР». РљРѕРјРјСѓРЅРёСЃС‚РёС‡РµСЃРєР°СЏ, 122",
                 floors: [
                     { id: 1, number: 1, rooms: [101, 102, 103] },
                     { id: 2, number: 2, rooms: [201, 202, 203] }
@@ -74,8 +80,8 @@ export const useBuildingsStore = defineStore("buildings", {
             },
             "communist_120_2": {
                 id: "communist_120_2",
-                title: "Коммунистический 120/2",
-                address: "ул. Коммунистическая, 120/2",
+                title: "РљР»РёРЅРёС‡РµСЃРєР°СЏ Р»Р°Р±Р°СЂРѕС‚РѕСЂРёСЏ",
+                address: "СѓР». РљРѕРјРјСѓРЅРёСЃС‚РёС‡РµСЃРєР°СЏ, 120/2",
                 floors: [
                     { id: 1, number: 1, rooms: [101, 102] },
                     { id: 2, number: 2, rooms: [201, 202] }
@@ -83,21 +89,26 @@ export const useBuildingsStore = defineStore("buildings", {
             },
             "communist_120_1": {
                 id: "communist_120_1",
-                title: "Коммунистический 120/1",
-                address: "ул. Коммунистическая, 120/1",
+                title: "Р”РµС‚СЃРєРёР№ С…РёСЂСЂРіРёС‡РµСЃРєС‚Р№ РєРѕСЂРїСѓСЃ",
+                address: "СѓР». РљРѕРјРјСѓРЅРёСЃС‚РёС‡РµСЃРєР°СЏ, 120/1",
                 floors: [
+                    { id: 0, number: -1, rooms: [101, 102] },
                     { id: 1, number: 1, rooms: [101, 102] },
-                    { id: 2, number: 2, rooms: [201, 202] }
+                    { id: 2, number: 2, rooms: [201, 202] },
+                    { id: 3, number: 3, rooms: [201, 202] },
+                    { id: 4, number: 4, rooms: [201, 202] }
                 ]
             },
             "choros_gurkina_6": {
                 id: "choros_gurkina_6",
-                title: "Чорос-Гуркина 6",
-                address: "ул. Чорос-Гуркина, 6",
+                title: "Р’Р·СЂРѕСЃР»Р°СЏ РїРѕР»РёРєР»РёРЅРёРєР°",
+                address: "СѓР». Р§РѕСЂРѕСЃ-Р“СѓСЂРєРёРЅР°, 6",
                 floors: [
+                    { id: 0, number: -1, rooms: [101, 102, 103, 104] },
                     { id: 1, number: 1, rooms: [101, 102, 103, 104] },
                     { id: 2, number: 2, rooms: [201, 202, 203, 204] },
-                    { id: 3, number: 3, rooms: [301, 302, 303, 304] }
+                    { id: 3, number: 3, rooms: [301, 302, 303, 304] },
+                    { id: 4, number: 4, rooms: [301, 302, 303, 304] }
                 ]
             }
         }
@@ -115,7 +126,7 @@ export const useBuildingsStore = defineStore("buildings", {
 
     actions: {
         async fetchBuildings() {
-            // Здесь будет API запрос
+            // Р—РґРµСЃСЊ Р±СѓРґРµС‚ API Р·Р°РїСЂРѕСЃ
             // const response = await fetch("/api/buildings")
             // this.buildings = await response.json()
         }

@@ -22,11 +22,11 @@ const router = createRouter({
             props: true
         },
         {
-            path: "/building/:buildingId/floor/:floorId/room/:roomNumber",
-            name: "room",
-            component: () => import("../components/rooms/RoomView.vue"),
-            props: true 
-        },
+            path: "/building/:buildingId/floor/:floorId/cabinet/:cabinetId",
+            name: "cabinet",
+            component: () => import("../components/cabinets/CabinetView.vue"), // Следующий этап
+            props: true
+        }
     ]
 });
 

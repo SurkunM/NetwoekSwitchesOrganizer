@@ -111,6 +111,297 @@ export const useBuildingsStore = defineStore("buildings", {
                     { id: 4, number: 4, rooms: [301, 302, 303, 304] }
                 ]
             }
+        },
+
+        cabinets: {
+            "communist_140_1": [  // communist_140, 1 этаж
+                {
+                    id: "cab_140_1_1",
+                    name: "Шкаф СК-1",
+                    location: "Пост охраны",
+                    status: "active",
+                    devices: [
+                        {
+                            id: 1,
+                            type: "Коммутатор",
+                            model: "Cisco 2960",
+                            ip: "192.168.1.1",
+                            // Дополнительные поля можно добавить здесь
+                            mac: "00:1A:2B:3C:4D:5E",
+                            serial: "FOC1234ABCD",
+                            firmware: "15.2(2)E7"
+                        },
+                        {
+                            id: 2,
+                            type: "Роутер",
+                            model: "MikroTik RB4011",
+                            ip: "192.168.1.2"
+                        },
+                        {
+                            id: 3,
+                            type: "Коммутатор",
+                            model: "Cisco 22",
+                            ip: "192.168.1.1",
+                            mac: "00:1A:2B:3C:4D:5E",
+                            serial: "FOC1234ABCD",
+                            firmware: "15.2(2)E7",
+                            status: "online",
+                            installDate: "2023-01-15",
+                            lastUpdate: "2024-03-20",
+                            notes: "Основной коммутатор доступа",
+                            ports: {
+                                rj45: { total: 24, used: 18 },
+                                sfp: { total: 4, used: 2 }
+                            }
+                        },
+                        {
+                            id: 4,
+                            type: "Коммутатор",
+                            model: "Cisco 333",
+                            ip: "192.168.1.1",
+                            mac: "00:1A:2B:3C:4D:5E",
+                            serial: "FOC1234ABCD",
+                            firmware: "15.2(2)E7",
+                            status: "online",
+                            installDate: "2023-01-15",
+                            lastUpdate: "2024-03-20",
+                            notes: "Основной коммутатор доступа",
+                            ports: {
+                                rj45: { total: 24, used: 18 },
+                                sfp: { total: 4, used: 2 }
+                            }
+                        },
+                        {
+                            id: 5,
+                            type: "Коммутатор",
+                            model: "Cisco 111",
+                            ip: "192.168.1.1",
+                            mac: "00:1A:2B:3C:4D:5E",
+                            serial: "FOC1234ABCD",
+                            firmware: "15.2(2)E7",
+                            status: "online",
+                            installDate: "2023-01-15",
+                            lastUpdate: "2024-03-20",
+                            notes: "Основной коммутатор доступа",
+                            ports: {
+                                rj45: { total: 24, used: 18 },
+                                sfp: { total: 4, used: 2 }
+                            }
+                        },
+                        {
+                            id: 6,
+                            type: "Коммутатор",
+                            model: "Cisco 2",
+                            ip: "192.168.1.11",
+                            mac: "00:1A:2B:3C:4D:5E",
+                            serial: "FOC1234ABCD",
+                            firmware: "15.2(2)E7",
+                            status: "online",
+                            installDate: "2023-01-15",
+                            lastUpdate: "2024-03-20",
+                            notes: "Основной коммутатор доступа",
+                            ports: {
+                                rj45: { total: 24, used: 18 },
+                                sfp: { total: 4, used: 2 }
+                            }
+                        },
+                        {
+                            id: 7,
+                            type: "Коммутатор",
+                            model: "Cisco 2",
+                            ip: "192.168.1.11",
+                            mac: "00:1A:2B:3C:4D:5E",
+                            serial: "FOC1234ABCD",
+                            firmware: "15.2(2)E7",
+                            status: "online",
+                            installDate: "2023-01-15",
+                            lastUpdate: "2024-03-20",
+                            notes: "Основной коммутатор доступа",
+                            ports: {
+                                rj45: { total: 24, used: 18 },
+                                sfp: { total: 4, used: 2 }
+                            }
+                        },
+                        {
+                            id: 8,
+                            type: "Коммутатор",
+                            model: "Cisco 2",
+                            ip: "192.168.1.11",
+                            mac: "00:1A:2B:3C:4D:5E",
+                            serial: "FOC1234ABCD",
+                            firmware: "15.2(2)E7",
+                            status: "online",
+                            installDate: "2023-01-15",
+                            lastUpdate: "2024-03-20",
+                            notes: "Основной коммутатор доступа",
+                            ports: {
+                                rj45: { total: 24, used: 18 },
+                                sfp: { total: 4, used: 2 }
+                            }
+                        },
+                        {
+                            id: 9,
+                            type: "Коммутатор",
+                            model: "Cisco 2",
+                            ip: "192.168.1.11",
+                            mac: "00:1A:2B:3C:4D:5E",
+                            serial: "FOC1234ABCD",
+                            firmware: "15.2(2)E7",
+                            status: "online",
+                            installDate: "2023-01-15",
+                            lastUpdate: "2024-03-20",
+                            notes: "Основной коммутатор доступа",
+                            ports: {
+                                rj45: { total: 24, used: 18 },
+                                sfp: { total: 4, used: 2 }
+                            }
+                        },
+                        {
+                            id: 11,
+                            type: "Коммутатор",
+                            model: "Cisco 2",
+                            ip: "192.168.1.11",
+                            mac: "00:1A:2B:3C:4D:5E",
+                            serial: "FOC1234ABCD",
+                            firmware: "15.2(2)E7",
+                            status: "online",
+                            installDate: "2023-01-15",
+                            lastUpdate: "2024-03-20",
+                            notes: "Основной коммутатор доступа",
+                            ports: {
+                                rj45: { total: 24, used: 18 },
+                                sfp: { total: 4, used: 2 }
+                            }
+                        },
+                        {
+                            id: 16,
+                            type: "Коммутатор",
+                            model: "Cisco 2",
+                            ip: "192.168.1.11",
+                            mac: "00:1A:2B:3C:4D:5E",
+                            serial: "FOC1234ABCD",
+                            firmware: "15.2(2)E7",
+                            status: "online",
+                            installDate: "2023-01-15",
+                            lastUpdate: "2024-03-20",
+                            notes: "Основной коммутатор доступа",
+                            ports: {
+                                rj45: { total: 24, used: 18 },
+                                sfp: { total: 4, used: 2 }
+                            }
+                        },
+                        {
+                            id: 13,
+                            type: "Коммутатор",
+                            model: "Cisco 2",
+                            ip: "192.168.1.11",
+                            mac: "00:1A:2B:3C:4D:5E",
+                            serial: "FOC1234ABCD",
+                            firmware: "15.2(2)E7",
+                            status: "online",
+                            installDate: "2023-01-15",
+                            lastUpdate: "2024-03-20",
+                            notes: "Основной коммутатор доступа",
+                            ports: {
+                                rj45: { total: 24, used: 18 },
+                                sfp: { total: 4, used: 2 }
+                            }
+                        },
+                        {
+                            id: 14,
+                            type: "Коммутатор",
+                            model: "Cisco 2",
+                            ip: "192.168.1.11",
+                            mac: "00:1A:2B:3C:4D:5E",
+                            serial: "FOC1234ABCD",
+                            firmware: "15.2(2)E7",
+                            status: "online",
+                            installDate: "2023-01-15",
+                            lastUpdate: "2024-03-20",
+                            notes: "Основной коммутатор доступа",
+                            ports: {
+                                rj45: { total: 24, used: 18 },
+                                sfp: { total: 4, used: 2 }
+                            }
+                        }
+                    ]
+                },
+                {
+                    id: "cab_140_1_2",
+                    name: "Шкаф СК-2",
+                    location: "Коридор рядом с каб. 201",
+                    status: "active",
+                    devices: [
+                        { id: 3, type: "Коммутатор", model: "D-Link DGS-1210", ip: "192.168.1.10" }
+                    ]
+                }
+            ],
+            "communist_140_2": [  // communist_140, 2 этаж
+                {
+                    id: "cab_140_2_1",
+                    name: "Шкаф СК-3",
+                    location: "Серверная",
+                    status: "active",
+                    devices: [
+                        { id: 4, type: "Сервер", model: "HP ProLiant", ip: "192.168.2.1" },
+                        { id: 5, type: "Коммутатор", model: "Cisco 3750", ip: "192.168.2.2" }
+                    ]
+                },
+                {
+                    id: "cab_140_2_2",
+                    name: "Шкаф СК-2",
+                    location: "Коридор рядом с каб. 201",
+                    status: "active",
+                    devices: [
+                        { id: 3, type: "Коммутатор", model: "D-Link DGS-1210", ip: "192.168.1.10" }
+                    ]
+                },
+                {
+                    id: "cab_140_2_3",
+                    name: "Шкаф СК-2",
+                    location: "Коридор рядом с каб. 201",
+                    status: "active",
+                    devices: [
+                        { id: 3, type: "Коммутатор", model: "D-Link DGS-1210", ip: "192.168.1.10" }
+                    ]
+                }
+            ],
+            "communist_140_3": [  // communist_140, 2 этаж
+                {
+                    id: "cab_140_3_1",
+                    name: "Шкаф СК-3",
+                    location: "Серверная",
+                    status: "active",
+                    devices: [
+                        { id: 4, type: "Сервер", model: "HP ProLiant", ip: "192.168.2.1" },
+                        { id: 5, type: "Коммутатор", model: "Cisco 3750", ip: "192.168.2.2" }
+                    ]
+                }
+            ],
+            "communist_140_4": [  // communist_140, 2 этаж
+                {
+                    id: "cab_140_4_1",
+                    name: "Шкаф СК-3",
+                    location: "Серверная",
+                    status: "active",
+                    devices: [
+                        { id: 4, type: "Сервер", model: "HP ProLiant", ip: "192.168.2.1" },
+                        { id: 5, type: "Коммутатор", model: "Cisco 3750", ip: "192.168.2.2" }
+                    ]
+                }
+            ],
+            "communist_140_5": [  // communist_140, 2 этаж
+                {
+                    id: "cab_140_5_1",
+                    name: "Шкаф СК-3",
+                    location: "Серверная",
+                    status: "active",
+                    devices: [
+                        { id: 4, type: "Сервер", model: "HP ProLiant", ip: "192.168.2.1" },
+                        { id: 5, type: "Коммутатор", model: "Cisco 3750", ip: "192.168.2.2" }
+                    ]
+                }
+            ]
         }
     }),
 
@@ -121,6 +412,12 @@ export const useBuildingsStore = defineStore("buildings", {
 
         getAllBuildings: (state) => {
             return state.buildings
+        },
+
+        // Добавляем геттер для получения шкафов этажа
+        getCabinetsByFloor: (state) => (buildingId, floorId) => {
+            const key = `${buildingId}_${floorId}`
+            return state.cabinets?.[key] || []
         }
     },
 

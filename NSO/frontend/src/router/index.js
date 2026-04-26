@@ -10,7 +10,7 @@ const router = createRouter({
             component: HomeView
         },
         {
-            path: "/:buildingId",
+            path: "/building/:buildingId",
             name: "building",
             component: () => import("../components/buildings/BuildingView.vue"),
             props: true
@@ -24,7 +24,7 @@ const router = createRouter({
         {
             path: "/building/:buildingId/floor/:floorId/cabinet/:cabinetId",
             name: "cabinet",
-            component: () => import("../components/cabinets/CabinetView.vue"), // Следующий этап
+            component: () => import("../components/cabinets/CabinetView.vue"),
             props: true
         }
     ]

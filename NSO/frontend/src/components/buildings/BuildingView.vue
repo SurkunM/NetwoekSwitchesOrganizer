@@ -8,11 +8,10 @@
                 <v-card>
                     <v-card-text>
                         <div class="building-visualization">
-                            <div v-for="floor in sortedFloatsDesc"
+                            <div v-for="floor in sortedFloors"
                                  :key="floor.id"
                                  class="building-floor"
                                  :class="{ 'ground-floor': floor.number === 1 }">
-                                <!--навигация :to=""-->
                                 <v-btn :to="`/building/${buildingId}/floor/${floor.number}`"
                                        color="primary"
                                        variant="tonal"
@@ -21,8 +20,8 @@
                                        :loading="loadingFloor === floor.number"
                                        @click="navigateToFloor(floor.number)">
                                     <v-icon start>mdi-floor-plan</v-icon>
-                                    {{ floor.number }} этаж
-                                </v-btn>
+                                    {{ getFloorLabel(floor.number) }}
+                            </v-btn>
                             </div>
                             <div class="building-foundation"></div>
                         </div>
@@ -34,7 +33,7 @@
 </template>
 
 <script>
-    import { useBuildingsStore } from '@/stores/app.js'
+    import { useBuildingsStore } from "@/stores/store.js";
 
     export default {
         props: {
@@ -55,7 +54,7 @@
                 const store = useBuildingsStore()
                 return store.getBuildingById(this.buildingId)
             },
-            sortedFloatsDesc() {
+            sortedFloors() {
                 if (!this.building?.floors) return []
                 return [...this.building.floors].sort((a, b) => b.number - a.number)
             }
@@ -67,6 +66,13 @@
                 setTimeout(() => {
                     this.loadingFloor = null
                 }, 500)
+            },
+
+            getFloorLabel(floorNumber) {
+                if (floorNumber === -1) return 'Цокольный этаж'
+                if (floorNumber === 0) return 'Технический этаж'
+                if (floorNumber === 1) return '1 этаж'
+                return `${floorNumber} этаж`
             }
         },
 

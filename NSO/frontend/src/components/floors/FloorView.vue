@@ -1,22 +1,19 @@
-<!-- components/floors/FloorView.vue -->
 <template>
     <v-container>
         <v-row>
             <v-col cols="12">
-                <!-- Хлебные крошки -->
-                <v-breadcrumbs :items="breadcrumbs" class="px-0">
-                    <template v-slot:divider>
-                        <v-icon>mdi-chevron-right</v-icon>
-                    </template>
-                </v-breadcrumbs>
-
-                <!-- Заголовок -->
                 <div class="mb-6">
                     <h1 class="text-h4">{{ building?.title }}</h1>
-                    <h2 class="text-h5 text-grey">{{ floorNumber }} этаж</h2>
+                    <div class="d-flex align-center mb-2">
+                        <v-btn icon="mdi-arrow-left"
+                               variant="text"
+                               size="x-large"
+                               :to="`/building/${building.id}`">
+                        </v-btn>
+                        <h2 class="text-h5 text-grey ml-2">{{ floorNumber }} этаж</h2>
+                    </div>
                 </div>
 
-                <!-- Таблица шкафов -->
                 <v-card v-if="cabinets.length > 0">
                     <v-card-title class="d-flex align-center">
                         <v-icon start color="primary">mdi-server-network</v-icon>
@@ -33,7 +30,7 @@
                                 <th>Название</th>
                                 <th>Расположение</th>
                                 <th>Устройства</th>
-                                <th>Действия</th>
+                                <th>Подробнее</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -63,8 +60,7 @@
                                     <span v-else class="text-grey">Нет устройств</span>
                                 </td>
                                 <td>
-                                    <v-btn size="small"
-                                           color="primary"
+                                    <v-btn color="primary"
                                            variant="tonal"
                                            :to="`/building/${buildingId}/floor/${floorNumber}/cabinet/${cabinet.id}`"
                                            @click.stop>
@@ -81,7 +77,6 @@
                          type="info"
                          variant="tonal"
                          class="mt-4">
-                    <v-icon start>mdi-information</v-icon>
                     На этом этаже нет коммутационных шкафов
                 </v-alert>
             </v-col>
@@ -90,7 +85,7 @@
 </template>
 
 <script>
-    import { useBuildingsStore } from '@/stores/app.js'
+    import { useBuildingsStore } from "@/stores/store.js"
 
     export default {
         props: {
@@ -114,40 +109,19 @@
                 return this.floorId
             },
 
-            // Исправлено: получаем шкафы напрямую из store
             cabinets() {
                 const store = useBuildingsStore()
                 const key = `${this.buildingId}_${this.floorId}`
-                console.log('Поиск шкафов по ключу:', key) // Для отладки
-                console.log('Найдены шкафы:', store.cabinets?.[key]) // Для отладки
-                return store.cabinets?.[key] || []
-            },
 
-            breadcrumbs() {
-                return [
-                    {
-                        title: 'Корпуса',
-                        disabled: false,
-                        to: '/'
-                    },
-                    {
-                        title: this.building?.title || 'Корпус',
-                        disabled: false,
-                        to: `/${this.buildingId}`
-                    },
-                    {
-                        title: `${this.floorNumber} этаж`,
-                        disabled: true
-                    }
-                ]
+                return store.cabinets?.[key] || []
             }
         },
 
         methods: {
             getDeviceWord(count) {
-                if (count === 1) return 'устройство'
-                if (count >= 2 && count <= 4) return 'устройства'
-                return 'устройств'
+                if (count === 1) return "устройство"
+                if (count >= 2 && count <= 4) return "устройства"
+                return "устройств"
             }
         },
 

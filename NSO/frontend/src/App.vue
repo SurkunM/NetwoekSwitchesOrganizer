@@ -12,10 +12,17 @@
                              color="grey-darken-3"
                              :width="350">
             <v-list>
-                <v-list-item v-for="(building, key) in buildings"
-                             :key="key"
+                <v-list-item prepend-icon="mdi-map"
+                             to="/"
+                             title="Медицинский городок">
+                </v-list-item>
+
+                <v-divider class="my-3" thickness="2"></v-divider>
+
+                <v-list-item v-for="building in buildings"
+                             :key="building.id"
                              :prepend-icon="building.icon || 'mdi-domain'"
-                             :to="`/${key}`"
+                             :to="`/building/${building.id}`"
                              :title="building.title">
                 </v-list-item>
             </v-list>
@@ -28,7 +35,7 @@
 </template>
 
 <script>
-    import { useBuildingsStore } from "./stores/app.js"
+    import { useBuildingsStore } from "./stores/store.js"
 
     export default {
         data() {
@@ -37,9 +44,15 @@
             }
         },
 
+        created() {
+            const store = useBuildingsStore();
+            store.loadBuildings();
+            store.loadCabinets();
+        },
+
         computed: {
             buildings() {
-                const store = useBuildingsStore()
+                const store = useBuildingsStore();
                 return store.getAllBuildings
             }
         }

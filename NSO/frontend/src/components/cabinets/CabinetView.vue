@@ -1,16 +1,13 @@
-<!-- components/cabinets/CabinetView.vue -->
 <template>
     <v-container>
         <v-row>
             <v-col cols="12">
-                <!-- Хлебные крошки -->
                 <v-breadcrumbs :items="breadcrumbs" class="px-0">
                     <template v-slot:divider>
                         <v-icon>mdi-chevron-right</v-icon>
                     </template>
                 </v-breadcrumbs>
 
-                <!-- Заголовок -->
                 <v-card class="mb-4">
                     <v-card-item>
                         <template v-slot:prepend>
@@ -23,49 +20,19 @@
 
                         <v-card-title class="d-flex align-center">
                             <v-icon icon="mdi-server" size="large" color="primary" class="mr-2"></v-icon>
-                            {{ cabinet?.name || 'Шкаф' }}
-                        </v-card-title>
-
-                        <v-card-subtitle>
-                            <v-icon size="small" class="mr-1">mdi-map-marker</v-icon>
                             {{ cabinet?.location || 'Расположение не указано' }}
-
-                            <v-chip v-if="cabinet?.status"
-                                    :color="cabinet.status === 'active' ? 'success' : 'warning'"
-                                    size="small"
-                                    class="ml-2">
-                                {{ cabinet.status === 'active' ? 'Активен' : 'Обслуживание' }}
-                            </v-chip>
-                        </v-card-subtitle>
+                        </v-card-title>
                     </v-card-item>
-
-                    <v-card-text>
-                        <div class="d-flex align-center">
-                            <v-icon color="info" class="mr-2">mdi-office-building</v-icon>
-                            <span>{{ building?.title }}</span>
-                            <v-icon class="mx-2">mdi-chevron-right</v-icon>
-                            <span>{{ floorId }} этаж</span>
-                        </div>
-                    </v-card-text>
                 </v-card>
 
-                <!-- Таблица устройств -->
                 <v-card v-if="devices.length > 0">
-                    <v-card-title class="d-flex align-center">
-                        <v-icon start color="primary">mdi-router-network</v-icon>
-                        Оборудование в шкафу
-                        <v-spacer></v-spacer>
-                        <v-chip color="primary" variant="outlined">
-                            Всего: {{ devices.length }}
-                        </v-chip>
-                    </v-card-title>
-
                     <v-card-text>
                         <v-data-table :headers="headers"
                                       :items="devices"
                                       item-value="id"
                                       hover
                                       show-expand
+                                      hide-default-footer
                                       :expanded="expandedItems"
                                       @update:expanded="expandedItems = $event">
 
@@ -289,7 +256,6 @@
                          type="info"
                          variant="tonal"
                          class="mt-4">
-                    <v-icon start>mdi-information</v-icon>
                     В этом шкафу нет установленного оборудования
                 </v-alert>
             </v-col>
@@ -298,10 +264,10 @@
 </template>
 
 <script>
-    import { useBuildingsStore } from '@/stores/app.js'
+    import { useBuildingsStore } from "@/stores/store.js";
 
     export default {
-        name: 'CabinetView',
+        name: "CabinetView",
 
         props: {
             buildingId: {
@@ -322,12 +288,12 @@
             return {
                 expandedItems: [],
                 headers: [
-                    { title: 'Тип', key: 'type', align: 'start', width: 150 },
-                    { title: 'Модель', key: 'model', width: 200 },
-                    { title: 'IP адрес', key: 'ip', width: 150 },
-                    { title: 'Статус', key: 'status', width: 120 },
-                    { title: 'Порты', key: 'portsInfo', width: 120 },
-                    { title: '', key: 'data-table-expand', width: 130, align: 'end' }
+                    { title: "Тип", key: "type", align: "start", width: 150 },
+                    { title: "Модель", key: "model", width: 200 },
+                    { title: "IP адрес", key: "ip", width: 150 },
+                    { title: "Статус", key: "status", width: 120 },
+                    { title: "Порты", key: "portsInfo", width: 120 },
+                    { title: "", key: "data-table-expand", width: 130, align: "end" }
                 ]
             }
         },
@@ -340,9 +306,13 @@
 
             cabinet() {
                 const store = useBuildingsStore()
-                const key = `${this.buildingId}_${this.floorId}`
-                const cabinets = store.cabinets?.[key] || []
+                // ИЗМЕНЕНИЕ: используем геттер getCabinetsByFloor
+                const cabinets = store.getCabinetsByFloor(this.buildingId, this.floorId)
                 return cabinets.find(c => c.id === this.cabinetId)
+                // БЫЛО: 
+                // const key = `${this.buildingId}_${this.floorId}`
+                // const cabinets = store.cabinets?.[key] || []
+                // return cabinets.find(c => c.id === this.cabinetId)
             },
 
             devices() {
@@ -437,7 +407,7 @@
                         type: isWan ? 'wan' : 'lan',
                         used,
                         uplink: isUplink,
-                        label: isWan ? 'WAN' : 'LAN/ЗСПД',
+                        label: isWan ? 'WAN' : 'ЗСПД',
                         device: used ? this.getConnectedDevice(i) : null
                     })
                 }

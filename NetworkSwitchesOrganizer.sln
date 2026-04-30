@@ -1,15 +1,29 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.37012.4 d17.14
+VisualStudioVersion = 17.14.37012.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NSO", "NSO\NSO.csproj", "{64D5AFAA-9B63-4E4A-8952-1C7E069CAB63}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1A8A683D-B9E7-4C3B-B574-54A726E8159A} = {1A8A683D-B9E7-4C3B-B574-54A726E8159A}
+		{77E58222-00E1-4B92-853A-B01EC4998CB4} = {77E58222-00E1-4B92-853A-B01EC4998CB4}
+		{D7DAC35D-EA04-442B-B966-59B45B9F2BF4} = {D7DAC35D-EA04-442B-B966-59B45B9F2BF4}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NSO.DataAccess", "NSO.DataAccess\NSO.DataAccess.csproj", "{D7DAC35D-EA04-442B-B966-59B45B9F2BF4}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1A8A683D-B9E7-4C3B-B574-54A726E8159A} = {1A8A683D-B9E7-4C3B-B574-54A726E8159A}
+		{22FFED00-90F9-4A9F-BE91-A899B66FA2E3} = {22FFED00-90F9-4A9F-BE91-A899B66FA2E3}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NSO.Contracts", "NSO.Contracts\NSO.Contracts.csproj", "{1A8A683D-B9E7-4C3B-B574-54A726E8159A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{22FFED00-90F9-4A9F-BE91-A899B66FA2E3} = {22FFED00-90F9-4A9F-BE91-A899B66FA2E3}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NSO.Model", "NSO.Model\NSO.Model.csproj", "{22FFED00-90F9-4A9F-BE91-A899B66FA2E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NSO.BusinessLogic", "NSO.BusinessLogic\NSO.BusinessLogic.csproj", "{77E58222-00E1-4B92-853A-B01EC4998CB4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +47,10 @@ Global
 		{22FFED00-90F9-4A9F-BE91-A899B66FA2E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22FFED00-90F9-4A9F-BE91-A899B66FA2E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22FFED00-90F9-4A9F-BE91-A899B66FA2E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77E58222-00E1-4B92-853A-B01EC4998CB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77E58222-00E1-4B92-853A-B01EC4998CB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77E58222-00E1-4B92-853A-B01EC4998CB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77E58222-00E1-4B92-853A-B01EC4998CB4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

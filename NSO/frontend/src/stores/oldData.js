@@ -42,28 +42,28 @@
     }
 ],
 
-    "cabinets": [
-        {
-            "id": 21,
-            "buildingId": 2,
-            "floor": 1,
-            "name": "Шкаф СК-1",
-            "location": "Пост охраны",
-            "status": "active",
-            "devices": [
-                {
-                    "id": 31,
-                    "type": "Коммутатор",
-                    "model": "Cisco 2960",
-                    "ip": "192.168.1.1",
-                    "mac": "00:1A:2B:3C:4D:5E",
-                    "serial": "FOC1234ABCD",
-                    "firmware": "15.2(2)E7",
-                    "status": "online",
-                    "installDate": "2023-01-15",
-                    "lastUpdate": "2024-03-20",
-                    "notes": "Основной коммутатор доступа"
+const test = cabinets [
+    {
+        "id": 21,
+        "buildingId": 2,
+        "floor": 1,
+        "name": "Шкаф СК-1",
+        "location": "Пост охраны",
+        "status": "active",
+        "devices": [
+            {
+                "id": 31,
+                "type": "Коммутатор",
+                "model": "Cisco 2960",
+                "ip": "192.168.1.1",
+                "mac": "00:1A:2B:3C:4D:5E",
+                "serial": "FOC1234ABCD",
+                "firmware": "15.2(2)E7",
+                "status": "online",
+                "installDate": "2023-01-15",
+                "lastUpdate": "2024-03-20",
+                "notes": "Основной коммутатор доступа"
                 }
-            ]
-        }
-    ]
+        ]
+    }
+]

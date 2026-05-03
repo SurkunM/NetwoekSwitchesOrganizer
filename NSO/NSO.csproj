@@ -17,6 +17,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\NSO.BusinessLogic\NSO.BusinessLogic.csproj" />
 		<ProjectReference Include="..\NSO.DataAccess\NSO.DataAccess.csproj" />
 		<ProjectReference Include="..\NSO.Model\NSO.Model.csproj" />
 	</ItemGroup>

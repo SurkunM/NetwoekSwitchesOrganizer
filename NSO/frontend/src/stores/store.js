@@ -11,21 +11,25 @@ export const useBuildingsStore = defineStore("buildings", {
 
     getters: {
         getBuildingById: (state) => (id) => {
-            return state.buildings.find(building => building.id == id)
+            return state.buildings.find(building => building.id == id);
         },
 
         getAllBuildings: (state) => {
-            return state.buildings
+            return state.buildings;
         },
 
         getCabinetById: (state) => (id) => {
-            return state.cabinets.find(cabinet => cabinet.id == id)
+            return state.cabinets.find(cabinet => cabinet.id == id);
+        },
+
+        getCabinets: (state) => {
+            return state.cabinets;
         },
 
         getCabinetsByFloor: (state) => (buildingId, floorId) => {
             return state.cabinets.filter(cabinet =>
                 cabinet.buildingId == buildingId && cabinet.floor == floorId
-            )
+            );
         }
     },
 
@@ -35,8 +39,7 @@ export const useBuildingsStore = defineStore("buildings", {
 
             return axios.get("/api/SwitchesOrganizer/GetBuildings")
                 .then(response => {
-                    this.buildings = response.data.buildings;
-                    alert("Success");
+                    this.buildings = response.data;
                 })
                 .catch(error => {
                     alert(error);
@@ -51,7 +54,7 @@ export const useBuildingsStore = defineStore("buildings", {
 
             return axios.get("/api/SwitchesOrganizer/GetCabinets")
                 .then(response => {
-                    this.cabinets = response.data.cabinets;
+                    this.cabinets = response.data;
                 })
                 .catch(error => {
                     alert(error);

@@ -23,7 +23,7 @@
                              :key="building.id"
                              :prepend-icon="building.icon || 'mdi-domain'"
                              :to="`/building/${building.id}`"
-                             :title="building.title">
+                             :title="building.address">
                 </v-list-item>
             </v-list>
         </v-navigation-drawer>
@@ -47,7 +47,6 @@
         created() {
             const store = useBuildingsStore();
             store.loadBuildings();
-            store.loadCabinets();
         },
 
         computed: {

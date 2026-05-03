@@ -54,6 +54,7 @@
                 const store = useBuildingsStore()
                 return store.getBuildingById(this.buildingId)
             },
+
             sortedFloors() {
                 if (!this.building?.floors) return []
                 return [...this.building.floors].sort((a, b) => b.number - a.number)

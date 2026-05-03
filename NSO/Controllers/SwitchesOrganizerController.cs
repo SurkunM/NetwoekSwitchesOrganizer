@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using NSO.Contracts.Dto;
 
 namespace NSO.Controllers;
 
@@ -12,14 +13,61 @@ public class SwitchesOrganizerController : ControllerBase
     }
 
     [HttpGet]
-    public Task<ActionResult> GetBuildings()
+    public ActionResult<List<BuildingDto>> GetBuildings()
     {
-        return Task.FromResult<ActionResult>(Ok());
+        var floors1 = new List<FloorDto>
+        {
+            new() { Id = 1, Number = 1 },
+            new() { Id = 2, Number = 2 },
+            new() { Id = 3, Number = 3 }
+
+        };
+
+        return new List<BuildingDto>
+        {
+            new()
+            {
+                Id = 1,
+                Title = "Хирургический корпус",
+                Address = "Коммунистический 140",
+                Floors = floors1
+            },
+            new()
+            {
+                Id = 12,
+                Title = "Терапевтический корпус",
+                Address = "Коммунистический 130",
+                Floors = floors1
+            },
+            new()
+            {
+                Id = 33,
+                Title = "Поликлиника",
+                Address = "Чорос-Гуркина 6",
+                Floors =
+                [
+                    new() { Id = 3, Number = -1 },
+                    new() { Id = 1, Number = 1 },
+                    new() { Id = 2, Number = 2 }
+
+                ]
+            }
+        };
     }
 
     [HttpGet]
-    public Task<ActionResult> GetCabinets()
+    public ActionResult<List<CabinetDto>> GetCabinets()
     {
-        return Task.FromResult<ActionResult>(BadRequest());
+        return new List<CabinetDto>
+        {
+            new() {
+                Id = 1,
+                BuildingId = 1,
+                Floor = 1,
+                Name = "Шкаф СК-1",
+                Location = "Пост охраны",
+                Devices = ["Cisco", "Huawei", "Eltex", "QTECH"]
+            }
+        };
     }
 }

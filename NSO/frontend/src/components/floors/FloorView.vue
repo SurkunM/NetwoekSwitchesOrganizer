@@ -3,7 +3,7 @@
         <v-row>
             <v-col cols="12">
                 <div class="mb-6">
-                    <h1 class="text-h4">{{ building?.title }}</h1>
+                    <h1 class="text-h4">{{ building?.address }}</h1>
                     <div class="d-flex align-center mb-2">
                         <v-btn icon="mdi-arrow-left"
                                variant="text"
@@ -99,21 +99,28 @@
             }
         },
 
+        created() {
+            const store = useBuildingsStore();
+            store.loadCabinets();
+        },
+
         computed: {
             building() {
-                const store = useBuildingsStore()
-                return store.getBuildingById(this.buildingId)
+                const store = useBuildingsStore();
+                return store.getBuildingById(this.buildingId);
             },
 
             floorNumber() {
-                return this.floorId
+                return this.floorId;
             },
 
             cabinets() {
-                const store = useBuildingsStore()
-                const key = `${this.buildingId}_${this.floorId}`
+                const store = useBuildingsStore();
 
-                return store.cabinets?.[key] || []
+                return store.getCabinets;
+                //const key = `${this.buildingId}_${this.floorId}` Нуждно выбрать из массива cabintes только те, что соовтетсвуют кабинету и этажу
+
+                //return store.cabinets?.[key] || []
             }
         },
 

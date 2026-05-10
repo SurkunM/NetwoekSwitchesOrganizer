@@ -116,11 +116,7 @@
 
             cabinets() {
                 const store = useBuildingsStore();
-
-                return store.getCabinets;
-                //const key = `${this.buildingId}_${this.floorId}` Нуждно выбрать из массива cabintes только те, что соовтетсвуют кабинету и этажу
-
-                //return store.cabinets?.[key] || []
+                return store.getCabinetsByFloor(this.buildingId, this.floorId);
             }
         },
 

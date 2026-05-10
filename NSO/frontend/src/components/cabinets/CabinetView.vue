@@ -36,18 +36,6 @@
                                       :expanded="expandedItems"
                                       @update:expanded="expandedItems = $event">
 
-                            <!-- Тип устройства с иконкой -->
-                            <template v-slot:item.type="{ item }">
-                                <div class="d-flex align-center">
-                                    <v-icon :icon="getDeviceIcon(item.type)"
-                                            :color="getDeviceColor(item.type)"
-                                            size="small"
-                                            class="mr-2">
-                                    </v-icon>
-                                    {{ item.type }}
-                                </div>
-                            </template>
-
                             <!-- Статус устройства -->
                             <template v-slot:item.status="{ item }">
                                 <v-chip :color="item.status === 'online' ? 'success' : 'error'"
@@ -92,48 +80,22 @@
                                                         <v-list density="compact">
                                                             <v-list-item>
                                                                 <v-list-item-title class="font-weight-bold">
-                                                                    <v-icon size="small" class="mr-1">mdi-ip</v-icon>
                                                                     IP адрес
                                                                 </v-list-item-title>
-                                                                <v-list-item-subtitle>{{ item.ip }}</v-list-item-subtitle>
+                                                                <v-list-item-subtitle>{{ item.ipAddress }}</v-list-item-subtitle>
                                                             </v-list-item>
 
-                                                            <v-list-item v-if="item.mac">
+                                                            <v-list-item v-if="item.macAddress">
                                                                 <v-list-item-title class="font-weight-bold">
-                                                                    <v-icon size="small" class="mr-1">mdi-mac</v-icon>
                                                                     MAC адрес
                                                                 </v-list-item-title>
-                                                                <v-list-item-subtitle>{{ item.mac }}</v-list-item-subtitle>
-                                                            </v-list-item>
-
-                                                            <v-list-item v-if="item.manufacturer">
-                                                                <v-list-item-title class="font-weight-bold">
-                                                                    <v-icon size="small" class="mr-1">mdi-factory</v-icon>
-                                                                    Производитель
-                                                                </v-list-item-title>
-                                                                <v-list-item-subtitle>{{ item.manufacturer }}</v-list-item-subtitle>
+                                                                <v-list-item-subtitle>{{ item.macAddress }}</v-list-item-subtitle>
                                                             </v-list-item>
                                                         </v-list>
                                                     </v-col>
 
                                                     <v-col cols="12" md="6">
                                                         <v-list density="compact">
-                                                            <v-list-item v-if="item.installDate">
-                                                                <v-list-item-title class="font-weight-bold">
-                                                                    <v-icon size="small" class="mr-1">mdi-calendar</v-icon>
-                                                                    Дата установки
-                                                                </v-list-item-title>
-                                                                <v-list-item-subtitle>{{ item.installDate }}</v-list-item-subtitle>
-                                                            </v-list-item>
-
-                                                            <v-list-item v-if="item.lastUpdate">
-                                                                <v-list-item-title class="font-weight-bold">
-                                                                    <v-icon size="small" class="mr-1">mdi-update</v-icon>
-                                                                    Последнее обновление
-                                                                </v-list-item-title>
-                                                                <v-list-item-subtitle>{{ item.lastUpdate }}</v-list-item-subtitle>
-                                                            </v-list-item>
-
                                                             <v-list-item v-if="item.notes">
                                                                 <v-list-item-title class="font-weight-bold">
                                                                     <v-icon size="small" class="mr-1">mdi-note</v-icon>
@@ -145,7 +107,6 @@
                                                     </v-col>
                                                 </v-row>
 
-                                                <!-- Визуализация портов только для коммутаторов -->
                                                 <template v-if="item.type === 'Коммутатор'">
                                                     <v-divider class="my-3"></v-divider>
 
@@ -156,7 +117,6 @@
                                                         </span>
                                                         <v-spacer></v-spacer>
 
-                                                        <!-- Легенда -->
                                                         <div class="d-flex align-center gap-3">
                                                             <div class="d-flex align-center">
                                                                 <div class="port-legend bg-wan"></div>
@@ -164,7 +124,7 @@
                                                             </div>
                                                             <div class="d-flex align-center">
                                                                 <div class="port-legend bg-lan"></div>
-                                                                <span class="text-caption ml-1">LAN/ЗСПД</span>
+                                                                <span class="text-caption ml-1">ЗСПД</span>
                                                             </div>
                                                             <div class="d-flex align-center">
                                                                 <div class="port-legend bg-uplink"></div>
@@ -177,7 +137,6 @@
                                                         </div>
                                                     </div>
 
-                                                    <!-- Сетка портов -->
                                                     <v-card variant="outlined" class="pa-4">
                                                         <div class="ports-grid">
                                                             <div v-for="port in getPortVisualization(item)"
@@ -199,48 +158,6 @@
                                                                 </v-icon>
                                                             </div>
                                                         </div>
-
-                                                        <!-- Статистика портов -->
-                                                        <v-row class="mt-4">
-                                                            <v-col cols="3">
-                                                                <v-card variant="tonal" color="success" size="small">
-                                                                    <v-card-text class="text-center py-2">
-                                                                        <div class="text-caption">WAN</div>
-                                                                        <div class="text-h6">
-                                                                            {{ getPortStats(item, 'wan').used }}/{{ getPortStats(item, 'wan').total }}
-                                                                        </div>
-                                                                    </v-card-text>
-                                                                </v-card>
-                                                            </v-col>
-                                                            <v-col cols="3">
-                                                                <v-card variant="tonal" color="warning" size="small">
-                                                                    <v-card-text class="text-center py-2">
-                                                                        <div class="text-caption">LAN</div>
-                                                                        <div class="text-h6">
-                                                                            {{ getPortStats(item, 'lan').used }}/{{ getPortStats(item, 'lan').total }}
-                                                                        </div>
-                                                                    </v-card-text>
-                                                                </v-card>
-                                                            </v-col>
-                                                            <v-col cols="3">
-                                                                <v-card variant="tonal" color="error" size="small">
-                                                                    <v-card-text class="text-center py-2">
-                                                                        <div class="text-caption">Uplink</div>
-                                                                        <div class="text-h6">
-                                                                            {{ getPortStats(item, 'uplink').used }}/{{ getPortStats(item, 'uplink').total }}
-                                                                        </div>
-                                                                    </v-card-text>
-                                                                </v-card>
-                                                            </v-col>
-                                                            <v-col cols="3">
-                                                                <v-card variant="tonal" color="grey" size="small">
-                                                                    <v-card-text class="text-center py-2">
-                                                                        <div class="text-caption">Свободно</div>
-                                                                        <div class="text-h6">{{ getPortStats(item, 'free').total }}</div>
-                                                                    </v-card-text>
-                                                                </v-card>
-                                                            </v-col>
-                                                        </v-row>
                                                     </v-card>
                                                 </template>
                                             </v-card-text>
@@ -306,25 +223,36 @@
 
             cabinet() {
                 const store = useBuildingsStore()
-                // ИЗМЕНЕНИЕ: используем геттер getCabinetsByFloor
-                const cabinets = store.getCabinetsByFloor(this.buildingId, this.floorId)
-                return cabinets.find(c => c.id === this.cabinetId)
-                // БЫЛО: 
-                // const key = `${this.buildingId}_${this.floorId}`
-                // const cabinets = store.cabinets?.[key] || []
-                // return cabinets.find(c => c.id === this.cabinetId)
+                // ИСПРАВЛЕНО: передаем параметры в геттер
+                const cabinets = store.getCabinetsByFloor(Number(this.buildingId), Number(this.floorId))
+
+                if (!cabinets || cabinets.length === 0) {
+                    console.log('Нет шкафов на этаже', this.buildingId, this.floorId)
+                    return null
+                }
+
+                // Ищем шкаф по ID (приводим к числу)
+                const found = cabinets.find(c => Number(c.id) === Number(this.cabinetId))
+
+                if (!found) {
+                    console.log('Шкаф не найден', this.cabinetId, 'Доступные:', cabinets.map(c => ({ id: c.id, name: c.name })))
+                }
+
+                return found
             },
 
             devices() {
                 if (!this.cabinet?.devices) return []
 
+                // ИСПРАВЛЕНО: правильно маппим поля из API
                 return this.cabinet.devices.map(device => ({
-                    ...device,
-                    status: device.status || (Math.random() > 0.2 ? 'online' : 'offline'),
-                    mac: device.mac || this.generateRandomMac(),
-                    manufacturer: this.getManufacturerByModel(device.model),
-                    installDate: device.installDate || '2023-01-15',
-                    lastUpdate: device.lastUpdate || '2024-03-20',
+                    id: device.id,
+                    type: device.type,
+                    model: device.model,
+                    ipAddress: device.ipAddress,
+                    macAddress: device.macAddress,
+                    status: device.status,
+                    notes: device.notes,
                     portsInfo: this.getPortsInfo(device)
                 }))
             },
@@ -354,6 +282,25 @@
             }
         },
 
+        created() {
+            const store = useBuildingsStore()
+            // Загружаем данные, если они еще не загружены
+            if (store.buildings.length === 0) {
+                store.loadBuildings()
+            }
+            if (store.cabinets.length === 0) {
+                store.loadCabinets()
+            }
+        },
+
+        watch: {
+            cabinetId: {
+                handler() {
+                    this.expandedItems = []
+                }
+            }
+        },
+
         methods: {
             getDeviceIcon(type) {
                 const icons = {
@@ -372,15 +319,13 @@
                 const colors = {
                     'Коммутатор': 'primary',
                     'Роутер': 'success',
-                    'Маршрутизатор': 'info',
-                    'Сервер': 'secondary',
-                    'ИБП': 'warning'
                 }
                 return colors[type] || 'grey'
             },
 
             getPortsInfo(device) {
                 if (device.type !== 'Коммутатор') return '—'
+                // Временно: генерируем случайные данные для портов
                 const used = Math.floor(Math.random() * 24)
                 return `${used}/24`
             },
@@ -399,7 +344,7 @@
 
                 for (let i = 1; i <= totalPorts; i++) {
                     const isWan = i <= 12
-                    const isUplink = (i === 1) || (i === 24)
+                    const isUplink = (i === 24)
                     const used = Math.random() > 0.3
 
                     ports.push({
@@ -421,28 +366,6 @@
                 return port.type === 'wan' ? 'port-wan' : 'port-lan'
             },
 
-            getPortStats(device, type) {
-                const ports = this.getPortVisualization(device)
-
-                if (type === 'free') {
-                    return { total: ports.filter(p => !p.used).length }
-                }
-
-                if (type === 'uplink') {
-                    const uplinkPorts = ports.filter(p => p.uplink)
-                    return {
-                        total: uplinkPorts.length,
-                        used: uplinkPorts.filter(p => p.used).length
-                    }
-                }
-
-                const typedPorts = ports.filter(p => p.type === type)
-                return {
-                    total: typedPorts.length,
-                    used: typedPorts.filter(p => p.used).length
-                }
-            },
-
             getConnectedDevice(portNumber) {
                 const connections = {
                     1: 'Роутер провайдера',
@@ -455,36 +378,12 @@
             showPortDetails(port) {
                 // Можно добавить диалог с детальной информацией о порте
                 console.log('Port clicked:', port)
-            },
-
-            generateRandomMac() {
-                return 'XX:XX:XX:XX:XX:XX'.replace(/X/g, () =>
-                    '0123456789ABCDEF'[Math.floor(Math.random() * 16)]
-                )
-            },
-
-            getManufacturerByModel(model) {
-                if (model.includes('Cisco')) return 'Cisco Systems'
-                if (model.includes('MikroTik')) return 'MikroTik'
-                if (model.includes('D-Link')) return 'D-Link'
-                if (model.includes('HP')) return 'Hewlett Packard'
-                if (model.includes('TP-Link')) return 'TP-Link'
-                return null
-            }
-        },
-
-        watch: {
-            cabinetId: {
-                handler() {
-                    this.expandedItems = []
-                }
             }
         }
     }
 </script>
 
 <style scoped>
-    /* Сетка портов */
     .ports-grid {
         display: grid;
         grid-template-columns: repeat(12, 1fr);
@@ -560,13 +459,4 @@
         gap: 16px;
     }
 
-    /* Hover эффекты */
-    .port-item:hover {
-        transform: scale(1.05);
-        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    }
-
-    :deep(.v-data-table__td) {
-        cursor: pointer;
-    }
 </style>

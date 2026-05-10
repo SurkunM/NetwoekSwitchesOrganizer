@@ -19,7 +19,7 @@ export const useBuildingsStore = defineStore("buildings", {
         },
 
         getCabinetById: (state) => (id) => {
-            return state.cabinets.find(cabinet => cabinet.id == id);
+            return state.cabinets.find(cabinet => Number(cabinet.id) === Number(id));
         },
 
         getCabinets: (state) => {

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NSO.Contracts.Dto;
+using NSO.Model;
 
 namespace NSO.Controllers;
 
@@ -56,18 +57,77 @@ public class SwitchesOrganizerController : ControllerBase
     }
 
     [HttpGet]
-    public ActionResult<List<CabinetDto>> GetCabinets()
+    public ActionResult<List<CabinetEntity>> GetCabinets()
     {
-        return new List<CabinetDto>
+        var cabinet1 = new CabinetEntity
         {
-            new() {
-                Id = 1,
-                BuildingId = 1,
-                Floor = 1,
-                Name = "Шкаф СК-1",
-                Location = "Пост охраны",
-                Devices = ["Cisco", "Huawei", "Eltex", "QTECH"]
+            Id = 21,
+            BuildingId = 1,
+            Floor = 1,
+            Name = "Шкаф СК-2",
+            Location = "Пост охраны",
+            Status = "active",
+            Devices = new List<DeviceEntity>
+            {
+                new DeviceEntity
+                {
+                    Id = 1,
+                    Type = "Коммутатор",
+                    Model = "Cisco 2960",
+                    IpAddress = "192.168.1.5",
+                    MacAddress = "00:1A:2B:3C:3D:5E",                                        
+                    Status = "online",
+                    InstallDate = DateTime.Parse("2023-01-15"),
+                    Notes = "Основной коммутатор доступа"
+                },
+                new DeviceEntity
+                {
+                    Id = 4,
+                    Type = "Коммутатор",
+                    Model = "Eltex MES2428",
+                    IpAddress = "192.168.1.15",
+                    MacAddress = "00:1A:2B:3C:4D:1E",                                        
+                    Status = "online",
+                    InstallDate = DateTime.Parse("2023-01-15"),
+                    Notes = "Основной коммутатор доступа"
+                }
             }
         };
+
+        var cabinet2 = new CabinetEntity
+        {
+            Id = 2,
+            BuildingId = 12,
+            Floor = 2,
+            Name = "Шкаф СК-3",
+            Location = "Пост охраны",
+            Status = "active",
+            Devices = new List<DeviceEntity>
+            {
+                new() {
+                    Id = 2,
+                    Type = "Коммутатор",
+                    Model = "Cisco 2960",
+                    IpAddress = "192.168.1.1",
+                    MacAddress = "00:1A:2B:3C:1A:5E",                                        
+                    Status = "online",
+                    InstallDate = DateTime.Parse("2023-01-15"),
+                    Notes = "Основной коммутатор доступа"
+                },
+
+                new() {
+                    Id = 3,
+                    Type = "Коммутатор",
+                    Model = "HUAWEI",
+                    IpAddress = "192.168.1.2",
+                    MacAddress = "00:1A:2B:3C:4Q:5E",                                        
+                    Status = "online",
+                    InstallDate = DateTime.Parse("2023-01-15"),
+                    Notes = "Основной коммутатор доступа"
+                }
+            }
+        };
+
+        return new List<CabinetEntity> { cabinet1, cabinet2 };
     }
 }

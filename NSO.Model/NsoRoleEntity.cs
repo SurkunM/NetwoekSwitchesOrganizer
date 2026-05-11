@@ -2,7 +2,7 @@
 
 namespace NSO.Model;
 
-public class NsoRoleEntity : IdentityRole<Guid>
+public class NsoRoleEntity : IdentityRole<int>
 {
     public string? Description { get; set; }
 }

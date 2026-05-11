@@ -5,9 +5,13 @@ using NSO.Model;
 
 namespace NSO.DataAccess;
 
-public class NetworkSwitchesOrganizerDbContext : IdentityDbContext<NsoUserEntity, NsoRoleEntity, Guid>
+public class NetworkSwitchesOrganizerDbContext : IdentityDbContext<NsoUserEntity, NsoRoleEntity, int>
 {
-    public virtual DbSet<SwitchEntity> Switches { get; set; }
+    public virtual DbSet<DeviceEntity> Switches { get; set; }
+
+    public virtual DbSet<BuildingEntity> Buildings { get; set; }
+
+    public virtual DbSet<RackEntity> Racks { get; set; }
 
     public NetworkSwitchesOrganizerDbContext(DbContextOptions<NetworkSwitchesOrganizerDbContext> options) : base(options) { }
 
@@ -15,24 +19,12 @@ public class NetworkSwitchesOrganizerDbContext : IdentityDbContext<NsoUserEntity
     {
         base.OnModelCreating(builder);
 
-        builder.Entity<IdentityUserClaim<Guid>>().ToTable("UserClaims");
-        builder.Entity<IdentityUserLogin<Guid>>().ToTable("UserLogins");
-        builder.Entity<IdentityUserToken<Guid>>().ToTable("UserTokens");
-        builder.Entity<IdentityUserRole<Guid>>().ToTable("UserRoles");
-        builder.Entity<IdentityRoleClaim<Guid>>().ToTable("RoleClaims");
-
-        builder.Entity<NsoUserEntity>(entity =>
-        {
-            entity.ToTable("Users");
-            entity.Property(e => e.Id)
-                .HasDefaultValueSql("gen_random_uuid()");
-        });
-
-        builder.Entity<NsoRoleEntity>(entity =>
-        {
-            entity.ToTable("Roles");
-            entity.Property(e => e.Id)
-                .HasDefaultValueSql("gen_random_uuid()");
-        });
+        builder.Entity<IdentityUserClaim<int>>().ToTable("UserClaims");
+        builder.Entity<IdentityUserLogin<int>>().ToTable("UserLogins");
+        builder.Entity<IdentityUserToken<int>>().ToTable("UserTokens");
+        builder.Entity<IdentityUserRole<int>>().ToTable("UserRoles");
+        builder.Entity<IdentityRoleClaim<int>>().ToTable("RoleClaims");
+        builder.Entity<NsoUserEntity>().ToTable("Users");
+        builder.Entity<NsoRoleEntity>().ToTable("Roles");
     }
 }

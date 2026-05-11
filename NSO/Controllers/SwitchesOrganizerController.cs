@@ -57,16 +57,15 @@ public class SwitchesOrganizerController : ControllerBase
     }
 
     [HttpGet]
-    public ActionResult<List<CabinetEntity>> GetCabinets()
+    public ActionResult<List<RackEntity>> GetCabinets()
     {
-        var cabinet1 = new CabinetEntity
+        var cabinet1 = new RackEntity
         {
             Id = 21,
             BuildingId = 1,
             Floor = 1,
             Name = "Шкаф СК-2",
             Location = "Пост охраны",
-            Status = "active",
             Devices = new List<DeviceEntity>
             {
                 new DeviceEntity
@@ -94,14 +93,12 @@ public class SwitchesOrganizerController : ControllerBase
             }
         };
 
-        var cabinet2 = new CabinetEntity
+        var cabinet2 = new RackEntity
         {
             Id = 2,
             BuildingId = 12,
             Floor = 2,
             Name = "Шкаф СК-3",
-            Location = "Пост охраны",
-            Status = "active",
             Devices = new List<DeviceEntity>
             {
                 new() {
@@ -128,6 +125,6 @@ public class SwitchesOrganizerController : ControllerBase
             }
         };
 
-        return new List<CabinetEntity> { cabinet1, cabinet2 };
+        return new List<RackEntity> { cabinet1, cabinet2 };
     }
 }

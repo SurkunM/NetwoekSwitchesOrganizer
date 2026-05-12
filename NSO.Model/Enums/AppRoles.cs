@@ -1,6 +1,6 @@
 ﻿namespace NSO.Model.Enums;
 
-public enum NsoAppRoles
+public enum AppRoles
 {
     None = 0,
     Admin = 1,

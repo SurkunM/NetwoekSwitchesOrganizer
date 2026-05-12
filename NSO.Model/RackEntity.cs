@@ -12,11 +12,15 @@ public class RackEntity
 
     public virtual required BuildingEntity Building { get; set; }
 
-    public int Floor {  get; set; }
+    public string Room { get; set; } = string.Empty;
 
-    public RackType Type { get; set; }  
+    public int Floor { get; set; }
 
-    public string Description { get; set; } = string.Empty;
+    public RackType Type { get; set; }
+
+    public bool HasVentilation { get; set; }
+
+    public bool HasUps { get; set; }
 
     public string Comment { get; set; } = string.Empty;
 

@@ -5,7 +5,7 @@ using NSO.Model;
 
 namespace NSO.DataAccess;
 
-public class NetworkSwitchesOrganizerDbContext : IdentityDbContext<NsoUserEntity, NsoRoleEntity, int>
+public class NetworkSwitchesOrganizerDbContext : IdentityDbContext<AppUserEntity, AppRoleEntity, int>
 {
     public virtual DbSet<DeviceEntity> Switches { get; set; }
 
@@ -24,7 +24,7 @@ public class NetworkSwitchesOrganizerDbContext : IdentityDbContext<NsoUserEntity
         builder.Entity<IdentityUserToken<int>>().ToTable("UserTokens");
         builder.Entity<IdentityUserRole<int>>().ToTable("UserRoles");
         builder.Entity<IdentityRoleClaim<int>>().ToTable("RoleClaims");
-        builder.Entity<NsoUserEntity>().ToTable("Users");
-        builder.Entity<NsoRoleEntity>().ToTable("Roles");
+        builder.Entity<AppUserEntity>().ToTable("Users");
+        builder.Entity<AppRoleEntity>().ToTable("Roles");
     }
 }

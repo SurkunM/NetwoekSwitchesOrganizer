@@ -2,7 +2,7 @@
 
 namespace NSO.Model;
 
-public class NsoUserEntity : IdentityUser<int>
+public class AppUserEntity : IdentityUser<int>
 {
     public required string Position { get; set; }
 

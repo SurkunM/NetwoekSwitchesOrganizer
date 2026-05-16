@@ -1,4 +1,5 @@
 ﻿using NSO.Model.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace NSO.Model;
 
@@ -10,10 +11,12 @@ public class RackEntity
 
     public int BuildingId { get; set; }
 
-    public virtual required BuildingEntity Building { get; set; }
+    public virtual BuildingEntity? Building { get; set; }
 
     public string Room { get; set; } = string.Empty;
 
+
+    [Range(-1, 10, ErrorMessage = "Номер этажа не может быть меньше -1 и больше 10. Таких этажей нет")]
     public int Floor { get; set; }
 
     public RackType Type { get; set; }

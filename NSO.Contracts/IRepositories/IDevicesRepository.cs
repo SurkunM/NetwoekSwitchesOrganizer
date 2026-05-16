@@ -2,6 +2,6 @@
 
 namespace NSO.Contracts.IRepositories;
 
-public interface ISwitchesRepository : IRepository<SwitchEntity>
+public interface IDevicesRepository : IRepository<DeviceEntity>
 {
 }

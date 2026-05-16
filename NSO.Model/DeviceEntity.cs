@@ -1,4 +1,5 @@
 ﻿using NSO.Model.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace NSO.Model;
 
@@ -24,6 +25,7 @@ public class DeviceEntity
 
     public virtual RackEntity? Rack { get; set; }
 
+    [Range(0, 100, ErrorMessage = "Укажите правдоподобное количество портов.")]
     public int PortsCount { get; set; }
 
     public virtual ICollection<PortEntity> Ports { get; set; } = new List<PortEntity>();

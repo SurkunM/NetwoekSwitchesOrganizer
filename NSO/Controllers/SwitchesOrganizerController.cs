@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using NSO.Contracts.Dto;
 using NSO.Model;
 
@@ -14,6 +15,7 @@ public class SwitchesOrganizerController : ControllerBase // Добавить м
     }
 
     [HttpGet]
+    [AllowAnonymous]
     public ActionResult<List<BuildingDto>> GetBuildings()
     {
         var floors1 = new List<FloorDto>

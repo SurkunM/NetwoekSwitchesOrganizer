@@ -1,47 +1,35 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using NSO.BusinessLogic.Handlers;
-using NSO.Contracts.IRepositories;
-using NSO.Contracts.IUnitOfWork;
 using NSO.DataAccess;
-using NSO.DataAccess.Repositories;
-using NSO.DataAccess.UnitOfWork;
 using NSO.Model;
+using NSO.NsoAppApiConfiguration;
 
 namespace NSO;
 
 public class Program
 {
-    public static void Main(string[] args)
+    public static async Task Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
-        //var connectionString = builder.Configuration.GetConnectionString("NetworkSwitchesOrganizerConnection");
+        var connectionString = builder.Configuration.GetConnectionString("NetworkSwitchesOrganizerConnection");
+        var services = builder.Services;
 
-        //builder.Services.AddDbContext<NetworkSwitchesOrganizerDbContext>(options =>
-        //{
-        //    options
-        //    .UseNpgsql(connectionString)
-        //    .UseLazyLoadingProxies();
-        //}, ServiceLifetime.Scoped, ServiceLifetime.Transient);
+        services.ConfigureAppDbContext(connectionString);
 
-        //builder.Services.AddIdentity<NsoUserEntity, NsoRoleEntity>(options =>
-        //{
-        //    options.Password.RequiredLength = 6;
-        //    options.Password.RequireDigit = false;
-        //    options.Password.RequireLowercase = true;
-        //    options.Password.RequireUppercase = true;
-        //    options.Password.RequireNonAlphanumeric = false;
-        //})
-        //.AddEntityFrameworkStores<NetworkSwitchesOrganizerDbContext>()
-        //.AddDefaultTokenProviders();
+        services.AddIdentity<AppUserEntity, AppRoleEntity>(options =>
+        {
+            options.Password.RequiredLength = 6;
+            options.Password.RequireDigit = false;
+            options.Password.RequireLowercase = true;
+            options.Password.RequireUppercase = true;
+            options.Password.RequireNonAlphanumeric = false;
+        })
+        .AddEntityFrameworkStores<NetworkSwitchesOrganizerDbContext>()
+        .AddDefaultTokenProviders();
 
-        //builder.Services.AddTransient<ISwitchesRepository, SwitchesRepository>();
-        //builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
-        //builder.Services.AddTransient<GetSwitchesHandler>();
+        services.AddScoped<DbContext>(provider => provider.GetRequiredService<NetworkSwitchesOrganizerDbContext>());// Äëÿ UoW
 
-        //builder.Services.AddScoped<DbContext>(provider => provider.GetRequiredService<NetworkSwitchesOrganizerDbContext>());// Äëÿ UoW
-
-        builder.Services.AddControllersWithViews();
+        services.AddControllersWithViews();
 
         var app = builder.Build();
 
@@ -50,6 +38,8 @@ public class Program
             app.UseHsts();
         }
 
+        await app.InitializeAppDbAsync();
+
         app.UseHttpsRedirection();
 
         app.UseDefaultFiles();
@@ -57,8 +47,8 @@ public class Program
 
         app.UseRouting();
 
-        //app.UseAuthentication();
-       // app.UseAuthorization();
+        app.UseAuthentication();
+        app.UseAuthorization();
 
         app.MapControllers();
         app.MapFallbackToFile("index.html");
